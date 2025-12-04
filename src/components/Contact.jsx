@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
 import { database } from '../firebase';
 import { ref, push, serverTimestamp } from 'firebase/database';
 
@@ -10,8 +10,7 @@ const Contact = () => {
         email: '',
         message: ''
     });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+    const [status, setStatus] = useState('idle'); // 'idle', 'submitting', 'success', 'error'
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -19,22 +18,34 @@ const Contact = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setIsSubmitting(true);
-        setSubmitStatus(null);
+        setStatus('submitting');
+
+        let isTimedOut = false;
+
+        // Safety timeout: Stop loading after 10 seconds
+        const timeoutId = setTimeout(() => {
+            isTimedOut = true;
+            setStatus('error');
+        }, 10000);
 
         try {
             await push(ref(database, 'messages'), {
                 ...formData,
                 timestamp: serverTimestamp()
             });
-            setSubmitStatus('success');
-            setFormData({ name: '', email: '', message: '' });
-            setTimeout(() => setSubmitStatus(null), 5000);
+
+            if (!isTimedOut) {
+                clearTimeout(timeoutId);
+                setStatus('success');
+                setFormData({ name: '', email: '', message: '' });
+                setTimeout(() => setStatus('idle'), 3000);
+            }
         } catch (error) {
-            console.error("Error adding document: ", error);
-            setSubmitStatus('error');
-        } finally {
-            setIsSubmitting(false);
+            if (!isTimedOut) {
+                clearTimeout(timeoutId);
+                console.error("Error adding document: ", error);
+                setStatus('error');
+            }
         }
     };
 
@@ -96,7 +107,8 @@ const Contact = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     required
-                                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-akatsuki-red focus:shadow-[0_0_15px_rgba(230,0,0,0.3)] transition-all"
+                                    disabled={status === 'submitting' || status === 'success'}
+                                    className="w-full bg-black/40 border border-white/10 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-akatsuki-red focus:shadow-[0_0_15px_rgba(230,0,0,0.3)] transition-all disabled:opacity-50"
                                     placeholder="Your Name"
                                 />
                             </div>
@@ -108,7 +120,8 @@ const Contact = () => {
                                     value={formData.email}
                                     onChange={handleChange}
                                     required
-                                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-akatsuki-red focus:shadow-[0_0_15px_rgba(230,0,0,0.3)] transition-all"
+                                    disabled={status === 'submitting' || status === 'success'}
+                                    className="w-full bg-black/40 border border-white/10 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-akatsuki-red focus:shadow-[0_0_15px_rgba(230,0,0,0.3)] transition-all disabled:opacity-50"
                                     placeholder="your@email.com"
                                 />
                             </div>
@@ -120,19 +133,31 @@ const Contact = () => {
                                     value={formData.message}
                                     onChange={handleChange}
                                     required
-                                    className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-akatsuki-red focus:shadow-[0_0_15px_rgba(230,0,0,0.3)] transition-all resize-none"
+                                    disabled={status === 'submitting' || status === 'success'}
+                                    className="w-full bg-black/40 border border-white/10 rounded-2xl px-4 py-3 text-white focus:outline-none focus:border-akatsuki-red focus:shadow-[0_0_15px_rgba(230,0,0,0.3)] transition-all resize-none disabled:opacity-50"
                                     placeholder="Tell me about your project..."
                                 ></textarea>
                             </div>
 
                             <button
                                 type="submit"
-                                disabled={isSubmitting}
-                                className="w-full py-4 bg-akatsuki-red text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-red-600 shadow-[0_0_20px_rgba(230,0,0,0.4)] hover:shadow-[0_0_30px_rgba(230,0,0,0.6)] transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
+                                disabled={status === 'submitting' || status === 'success'}
+                                className={`w-full py-4 rounded-full font-bold flex items-center justify-center gap-2 transition-all transform duration-300 min-h-[60px] ${status === 'success'
+                                    ? 'bg-blue-600 shadow-[0_0_20px_rgba(37,99,235,0.4)] scale-105'
+                                    : status === 'error'
+                                        ? 'bg-red-600 shadow-[0_0_20px_rgba(220,38,38,0.4)]'
+                                        : 'bg-akatsuki-red hover:bg-red-600 shadow-[0_0_20px_rgba(230,0,0,0.4)] hover:shadow-[0_0_30px_rgba(230,0,0,0.6)] hover:-translate-y-1'
+                                    } disabled:cursor-not-allowed`}
                             >
-                                {isSubmitting ? (
+                                {status === 'submitting' ? (
+                                    <Loader2 size={24} className="animate-spin" />
+                                ) : status === 'success' ? (
                                     <>
-                                        <Loader2 size={18} className="animate-spin" /> Sending...
+                                        <CheckCircle2 size={20} /> Message Sent!
+                                    </>
+                                ) : status === 'error' ? (
+                                    <>
+                                        <AlertCircle size={20} /> Failed.
                                     </>
                                 ) : (
                                     <>
@@ -141,11 +166,20 @@ const Contact = () => {
                                 )}
                             </button>
 
-                            {submitStatus === 'success' && (
-                                <p className="text-green-400 text-center text-sm mt-2">Message sent successfully!</p>
-                            )}
-                            {submitStatus === 'error' && (
-                                <p className="text-red-400 text-center text-sm mt-2">Failed to send message. Please try again.</p>
+                            {status === 'error' && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="text-center"
+                                >
+                                    <p className="text-red-400 text-sm mb-2">Connection failed.</p>
+                                    <a
+                                        href={`mailto:bhaveshsutharb830@gmail.com?subject=Portfolio Contact: ${formData.name}&body=Name: ${formData.name}%0D%0AEmail: ${formData.email}%0D%0AMessage: ${formData.message}`}
+                                        className="text-white underline hover:text-akatsuki-red transition-colors text-sm"
+                                    >
+                                        Click here to send via Email app instead
+                                    </a>
+                                </motion.div>
                             )}
                         </form>
                     </motion.div>

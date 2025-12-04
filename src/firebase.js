@@ -8,7 +8,8 @@ const firebaseConfig = {
     storageBucket: "akatsuki-portfolio.firebasestorage.app",
     messagingSenderId: "312738868596",
     appId: "1:312738868596:web:b6d4e652b4cdc79ad59021",
-    measurementId: "G-9B4KKT8ZBJ"
+    measurementId: "G-9B4KKT8ZBJ",
+    databaseURL: "https://akatsuki-portfolio-default-rtdb.firebaseio.com"
 };
 
 // Initialize Firebase

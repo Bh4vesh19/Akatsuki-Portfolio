@@ -20,7 +20,6 @@ const Navbar = () => {
         { name: 'About', href: '#about' },
         { name: 'Skills', href: '#skills' },
         { name: 'Projects', href: '#projects' },
-        { name: 'Contact Us', href: '#contact' },
     ];
 
     return (
@@ -29,7 +28,7 @@ const Navbar = () => {
                 initial={{ y: -100, opacity: 0 }}
                 animate={{ y: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-[95%] max-w-6xl transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}
+                className={`fixed top-4 left-0 right-0 mx-auto z-50 w-[95%] max-w-6xl transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}
             >
                 <div className={`relative px-6 py-3 rounded-full border border-white/10 glass-panel shadow-lg flex items-center justify-between transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-xl' : 'bg-black/40 backdrop-blur-md'}`}>
                     {/* Logo */}
@@ -49,27 +48,26 @@ const Navbar = () => {
                                 {link.name}
                             </a>
                         ))}
-                    </div>
-
-                    {/* Contact Info (Small) */}
-                    <div className="hidden lg:flex items-center gap-4 text-xs text-gray-400">
-                        <a href="mailto:bhaveshsutharb830@gmail.com" className="flex items-center gap-1 hover:text-akatsuki-red transition-colors">
-                            <Mail size={14} />
-                            <span>Email</span>
-                        </a>
-                        <a href="tel:+917715915731" className="flex items-center gap-1 hover:text-akatsuki-red transition-colors">
-                            <Phone size={14} />
-                            <span>Phone</span>
+                        <a
+                            href="#contact"
+                            className="px-5 py-2 rounded-full bg-gradient-to-r from-akatsuki-red to-red-600 text-white text-sm font-medium hover:shadow-[0_0_15px_rgba(220,20,60,0.5)] transition-all duration-300 transform hover:scale-105"
+                        >
+                            Contact Me
                         </a>
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <button
-                        className="md:hidden text-white hover:text-akatsuki-red transition-colors"
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    >
-                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                    {/* Mobile Menu Button & Contact Icon */}
+                    <div className="flex items-center gap-4 md:hidden">
+                        <a href="#contact" className="text-white hover:text-akatsuki-red transition-colors">
+                            <Mail size={20} />
+                        </a>
+                        <button
+                            className="text-white hover:text-akatsuki-red transition-colors"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        >
+                            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                        </button>
+                    </div>
                 </div>
             </motion.nav>
 
@@ -80,7 +78,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 20 }}
-                        className="fixed inset-0 z-40 bg-black/90 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col items-center gap-8"
+                        className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl pt-24 px-6 md:hidden flex flex-col items-center gap-8"
                     >
                         {navLinks.map((link) => (
                             <a
@@ -92,12 +90,19 @@ const Navbar = () => {
                                 {link.name}
                             </a>
                         ))}
+                        <a
+                            href="#contact"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="text-2xl text-akatsuki-red font-semibold hover:scale-110 transition-all duration-300"
+                        >
+                            Contact Me
+                        </a>
 
                         <div className="mt-8 flex flex-col items-center gap-4 text-gray-400">
-                            <a href="mailto:bhaveshsutharb830@gmail.com" className="flex items-center gap-2">
+                            <a href="mailto:bhaveshsutharb830@gmail.com" className="flex items-center gap-2 hover:text-white transition-colors">
                                 <Mail size={18} /> bhaveshsutharb830@gmail.com
                             </a>
-                            <a href="tel:+917715915731" className="flex items-center gap-2">
+                            <a href="tel:+917715915731" className="flex items-center gap-2 hover:text-white transition-colors">
                                 <Phone size={18} /> +91 7715915731
                             </a>
                         </div>
