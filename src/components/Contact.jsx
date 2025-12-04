@@ -1,8 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
+import { db } from '../firebase';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 
 const Contact = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState(null); // 'success' | 'error' | null
+
+    const handleChange = (e) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus(null);
+
+        try {
+            await addDoc(collection(db, "messages"), {
+                ...formData,
+                timestamp: serverTimestamp()
+            });
+            setSubmitStatus('success');
+            setFormData({ name: '', email: '', message: '' });
+            setTimeout(() => setSubmitStatus(null), 5000);
+        } catch (error) {
+            console.error("Error adding document: ", error);
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <section id="contact" className="py-20 px-4 relative">
             <div className="max-w-6xl mx-auto">
@@ -52,11 +87,15 @@ const Contact = () => {
                         viewport={{ once: true }}
                         className="glass-panel p-6 md:p-8 rounded-3xl border border-white/10"
                     >
-                        <form className="space-y-6">
+                        <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
                                 <label className="block text-sm font-medium text-gray-400 mb-2">Name</label>
                                 <input
                                     type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-akatsuki-red focus:shadow-[0_0_15px_rgba(230,0,0,0.3)] transition-all"
                                     placeholder="Your Name"
                                 />
@@ -65,6 +104,10 @@ const Contact = () => {
                                 <label className="block text-sm font-medium text-gray-400 mb-2">Email</label>
                                 <input
                                     type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-akatsuki-red focus:shadow-[0_0_15px_rgba(230,0,0,0.3)] transition-all"
                                     placeholder="your@email.com"
                                 />
@@ -73,6 +116,10 @@ const Contact = () => {
                                 <label className="block text-sm font-medium text-gray-400 mb-2">Message</label>
                                 <textarea
                                     rows="4"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-akatsuki-red focus:shadow-[0_0_15px_rgba(230,0,0,0.3)] transition-all resize-none"
                                     placeholder="Tell me about your project..."
                                 ></textarea>
@@ -80,10 +127,26 @@ const Contact = () => {
 
                             <button
                                 type="submit"
-                                className="w-full py-4 bg-akatsuki-red text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-red-600 shadow-[0_0_20px_rgba(230,0,0,0.4)] hover:shadow-[0_0_30px_rgba(230,0,0,0.6)] transition-all transform hover:-translate-y-1"
+                                disabled={isSubmitting}
+                                className="w-full py-4 bg-akatsuki-red text-white rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-red-600 shadow-[0_0_20px_rgba(230,0,0,0.4)] hover:shadow-[0_0_30px_rgba(230,0,0,0.6)] transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:cursor-not-allowed"
                             >
-                                Send Message <Send size={18} />
+                                {isSubmitting ? (
+                                    <>
+                                        <Loader2 size={18} className="animate-spin" /> Sending...
+                                    </>
+                                ) : (
+                                    <>
+                                        Send Message <Send size={18} />
+                                    </>
+                                )}
                             </button>
+
+                            {submitStatus === 'success' && (
+                                <p className="text-green-400 text-center text-sm mt-2">Message sent successfully!</p>
+                            )}
+                            {submitStatus === 'error' && (
+                                <p className="text-red-400 text-center text-sm mt-2">Failed to send message. Please try again.</p>
+                            )}
                         </form>
                     </motion.div>
                 </div>
