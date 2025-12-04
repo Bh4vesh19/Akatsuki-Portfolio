@@ -44,7 +44,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1 }}
-                    className="glass-panel p-6 md:p-12 rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(230,0,0,0.15)] bg-black/20 backdrop-blur-sm"
+                    className="p-6 md:p-12 rounded-3xl border border-white/10 shadow-[0_0_50px_rgba(230,0,0,0.15)] bg-black/10 backdrop-blur-[4px]"
                 >
                     <motion.h1
                         className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-4 tracking-tight"

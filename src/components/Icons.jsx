@@ -2,7 +2,7 @@ import React from 'react';
 
 export const AkatsukiCloud = ({ className = "w-12 h-8" }) => (
     <img
-        src="/cloud.png"
+        src={`${import.meta.env.BASE_URL}cloud.png`}
         alt="Akatsuki Cloud"
         className={`${className} object-contain drop-shadow-[0_0_8px_rgba(230,0,0,0.6)]`}
     />
