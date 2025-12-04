@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
-import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { database } from '../firebase';
+import { ref, push, serverTimestamp } from 'firebase/database';
 
 const Contact = () => {
     const [formData, setFormData] = useState({
@@ -23,7 +23,7 @@ const Contact = () => {
         setSubmitStatus(null);
 
         try {
-            await addDoc(collection(db, "messages"), {
+            await push(ref(database, 'messages'), {
                 ...formData,
                 timestamp: serverTimestamp()
             });
