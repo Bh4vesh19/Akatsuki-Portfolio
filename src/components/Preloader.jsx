@@ -20,9 +20,7 @@ const Preloader = ({ setLoading }) => {
 
     useEffect(() => {
         if (progress === 100) {
-            setTimeout(() => {
-                setLoading(false);
-            }, 100);
+            setLoading(false);
         }
     }, [progress, setLoading]);
 

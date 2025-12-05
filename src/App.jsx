@@ -10,7 +10,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Preloader from './components/Preloader';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -22,7 +22,11 @@ function App() {
       </AnimatePresence>
 
       {!loading && (
-        <>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           {/* Global Background */}
           <div className="fixed inset-0 z-0">
             <img src={`${import.meta.env.BASE_URL}background.gif`} className="w-full h-full object-cover opacity-60" alt="Akatsuki Background" />
@@ -54,7 +58,7 @@ function App() {
             </main>
             <Footer />
           </div>
-        </>
+        </motion.div>
       )}
     </div>
   );
