@@ -34,13 +34,13 @@ const Preloader = ({ setLoading }) => {
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gray-900 via-black to-black" />
 
             {/* Naruto Running Animation Container */}
-            <div className="relative w-full max-w-2xl h-64 flex flex-col justify-end pb-10 overflow-hidden">
+            <div className="relative w-full max-w-5xl h-64 flex flex-col justify-end pb-10">
 
 
 
                 {/* Running Naruto */}
                 <motion.div
-                    className="absolute bottom-0 w-24 h-24 md:w-32 md:h-32 z-20"
+                    className="absolute bottom-0 w-24 h-24 md:w-32 md:h-32 z-50"
                     style={{
                         left: `${progress}%`,
                         transform: 'translateX(-50%)'
