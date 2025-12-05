@@ -3,7 +3,7 @@ import { Github, Twitter, Instagram, Heart } from 'lucide-react';
 
 const Footer = () => {
     return (
-        <footer className="py-8 border-t border-white/10 bg-transparent text-center relative z-10 backdrop-blur-sm">
+        <footer className="py-8 border-t border-white/5 bg-black/5 text-center relative z-10 backdrop-blur-xl">
             <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
                 <p className="text-gray-500 text-sm">
                     © {new Date().getFullYear()} Bhavesh Suthar. All rights reserved.

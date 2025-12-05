@@ -30,7 +30,7 @@ const Navbar = () => {
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className={`fixed top-4 left-0 right-0 mx-auto z-50 w-[95%] max-w-6xl transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}
             >
-                <div className={`relative px-6 py-3 rounded-full border border-white/10 glass-panel shadow-lg flex items-center justify-between transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-xl' : 'bg-black/40 backdrop-blur-md'}`}>
+                <div className={`relative px-6 py-3 rounded-full glass-panel flex items-center justify-between transition-all duration-500 ${isScrolled ? 'shadow-2xl' : 'shadow-lg'}`}>
                     {/* Logo */}
                     <a href="#home" className="flex items-center gap-2 group">
                         <AkatsukiCloud className="w-10 h-6 text-akatsuki-red group-hover:drop-shadow-[0_0_8px_rgba(230,0,0,0.8)] transition-all duration-300" />

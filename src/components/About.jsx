@@ -3,6 +3,8 @@ import { motion } from 'framer-motion';
 import { BookOpen, Code, Terminal, Database, Layout } from 'lucide-react';
 import { AkatsukiCloud } from './Icons';
 
+import TypewriterParagraph from './TypewriterParagraph';
+
 const About = () => {
     const learningItems = [
         { icon: Terminal, text: "Strengthening programming fundamentals" },
@@ -13,7 +15,7 @@ const About = () => {
     ];
 
     return (
-        <section id="about" className="py-20 px-4 relative overflow-hidden">
+        <section id="about" className="py-12 md:py-20 px-4 relative overflow-hidden">
             <div className="max-w-6xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0 }}
@@ -25,16 +27,16 @@ const About = () => {
                     <div className="space-y-8">
                         {/* Profile Summary Card */}
                         <div className="glass-card p-6 md:p-8 rounded-2xl relative overflow-hidden group hover:border-akatsuki-red/30 transition-colors h-full flex flex-col justify-center">
-                            <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
-                                <AkatsukiCloud className="w-32 h-20" />
-                            </div>
+
                             <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
                                 <span className="w-1 h-6 bg-akatsuki-red rounded-full"></span>
                                 Profile Summary
                             </h3>
-                            <p className="text-gray-300 leading-relaxed text-base md:text-lg">
-                                I am a dedicated 2nd-year BCA student at Tilak Vidyapeth University with a strong passion for software development. My journey involves deep-diving into core programming languages like Python, C, and Java, while simultaneously exploring modern web technologies. I am actively seeking internship opportunities and planning to pursue an MCA to further specialize in full-stack development and software engineering.
-                            </p>
+                            <TypewriterParagraph
+                                text="I am a dedicated 2nd-year BCA student at Tilak Vidyapeth University with a strong passion for software development. My journey involves deep-diving into core programming languages like Python, C, and Java, while simultaneously exploring modern web technologies. I am actively seeking internship opportunities and planning to pursue an MCA to further specialize in full-stack development and software engineering."
+                                className="text-gray-300 leading-relaxed text-base md:text-lg"
+                                speed={10}
+                            />
                         </div>
                     </div>
 
@@ -42,9 +44,11 @@ const About = () => {
                     <div className="space-y-8">
                         <div className="glass-panel p-6 md:p-8 rounded-3xl border-l-4 border-l-akatsuki-red">
                             <h2 className="text-3xl font-bold text-white mb-4">About Me</h2>
-                            <p className="text-gray-300 mb-6 leading-relaxed">
-                                Hello! I'm Bhavesh Suthar, a programming enthusiast based in Mumbai. I believe in the power of code to solve real-world problems. Currently, I am focused on mastering the fundamentals of computer science and applying them through hands-on projects. Whether it's building a CLI tool in Python or designing a responsive UI with React, I enjoy every step of the creation process. My goal is to build scalable, efficient, and user-friendly applications that make a difference.
-                            </p>
+                            <TypewriterParagraph
+                                text="Hello! I'm Bhavesh Suthar, a programming enthusiast based in Mumbai. I believe in the power of code to solve real-world problems. Currently, I am focused on mastering the fundamentals of computer science and applying them through hands-on projects. Whether it's building a CLI tool in Python or designing a responsive UI with React, I enjoy every step of the creation process. My goal is to build scalable, efficient, and user-friendly applications that make a difference."
+                                className="text-gray-300 mb-6 leading-relaxed"
+                                speed={10}
+                            />
 
                             {/* Education Card */}
                             <div className="bg-white/5 rounded-xl p-4 border border-white/10 flex items-center gap-4">

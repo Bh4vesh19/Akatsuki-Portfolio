@@ -1,5 +1,8 @@
 import React from 'react';
 import Navbar from './components/Navbar';
+import RevealOnScroll from './components/RevealOnScroll';
+import VillageScrollBackground from './components/VillageScrollBackground';
+import TechMarquee from './components/TechMarquee';
 import Hero from './components/Hero';
 import About from './components/About';
 import Skills from './components/Skills';
@@ -12,18 +15,32 @@ function App() {
     <div className="min-h-screen bg-akatsuki-black text-white selection:bg-akatsuki-red selection:text-white overflow-x-hidden relative">
       {/* Global Background */}
       <div className="fixed inset-0 z-0">
-        <img src={`${import.meta.env.BASE_URL}background.gif`} className="w-full h-full object-cover opacity-40" alt="Akatsuki Background" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/50 to-black/90" />
+        <img src={`${import.meta.env.BASE_URL}background.gif`} className="w-full h-full object-cover opacity-60" alt="Akatsuki Background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/80" />
       </div>
 
       <div className="relative z-10">
+        <VillageScrollBackground />
         <Navbar />
         <main>
           <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Contact />
+
+          <div className="my-10">
+            <TechMarquee />
+          </div>
+
+          <RevealOnScroll>
+            <About />
+          </RevealOnScroll>
+          <RevealOnScroll>
+            <Skills />
+          </RevealOnScroll>
+          <RevealOnScroll>
+            <Projects />
+          </RevealOnScroll>
+          <RevealOnScroll>
+            <Contact />
+          </RevealOnScroll>
         </main>
         <Footer />
       </div>

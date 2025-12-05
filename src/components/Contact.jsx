@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, Loader2, CheckCircle2, AlertCircle } from 'lucide-react';
+import { AkatsukiCloud } from './Icons';
 import { database } from '../firebase';
 import { ref, push, serverTimestamp } from 'firebase/database';
 
@@ -50,7 +51,7 @@ const Contact = () => {
     };
 
     return (
-        <section id="contact" className="py-20 px-4 relative">
+        <section id="contact" className="py-12 md:py-20 px-4 relative">
             <div className="max-w-6xl mx-auto">
                 <div className="grid md:grid-cols-2 gap-8 md:gap-12">
                     {/* Contact Info */}
@@ -59,8 +60,13 @@ const Contact = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                     >
-                        <h2 className="text-4xl font-bold text-white mb-6">Let's <span className="text-akatsuki-red neon-text">Connect</span></h2>
-                        <p className="text-gray-400 mb-10 text-lg">
+                        <div className="relative">
+                            <h2 className="text-4xl font-bold text-white mb-6 relative z-10">Let's <span className="text-akatsuki-red neon-text">Connect</span></h2>
+                            <div className="absolute -top-12 -right-12 opacity-30 animate-pulse-slow">
+                                <AkatsukiCloud className="w-48 h-28 text-akatsuki-red drop-shadow-[0_0_10px_rgba(230,0,0,0.5)]" />
+                            </div>
+                        </div>
+                        <p className="text-gray-400 mb-10 text-lg relative z-10">
                             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                         </p>
 
@@ -96,7 +102,7 @@ const Contact = () => {
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="glass-panel p-6 md:p-8 rounded-3xl border border-white/10"
+                        className="glass-panel p-6 md:p-8 rounded-3xl"
                     >
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>

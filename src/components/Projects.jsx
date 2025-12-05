@@ -24,7 +24,7 @@ const Projects = () => {
     ];
 
     return (
-        <section id="projects" className="py-20 px-4 relative bg-black/50">
+        <section id="projects" className="py-12 md:py-20 px-4 relative bg-black/5">
             <div className="max-w-6xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
@@ -46,7 +46,7 @@ const Projects = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             whileHover={{ scale: 1.02 }}
-                            className="group relative rounded-3xl overflow-hidden glass-card border border-white/10 hover:border-akatsuki-red/50 transition-all duration-500"
+                            className="group relative rounded-3xl overflow-hidden glass-card hover:border-akatsuki-red/50 transition-all duration-500"
                         >
                             {/* Project Image Placeholder */}
                             <div className={`h-48 md:h-64 ${project.image} relative overflow-hidden`}>
