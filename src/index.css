@@ -12,6 +12,10 @@
     /* Improve touch response */
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   /* Restore default cursor on mobile/touch devices and optimize touch */
   @media (pointer: coarse) {
 

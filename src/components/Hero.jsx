@@ -7,7 +7,7 @@ import SplitText from './SplitText';
 
 const Hero = () => {
     return (
-        <section id="home" className="relative min-h-[100dvh] w-full overflow-hidden flex items-center justify-center">
+        <section id="home" className="relative min-h-screen py-24 md:py-0 w-full overflow-hidden flex items-center justify-center">
             {/* Background Layer - Now handled globally in App.jsx */}
             <div className="absolute inset-0 z-0">
                 {/* Animated Clouds Overlay */}

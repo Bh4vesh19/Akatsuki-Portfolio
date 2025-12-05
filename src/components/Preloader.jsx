@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 
@@ -23,7 +22,7 @@ const Preloader = ({ setLoading }) => {
         if (progress === 100) {
             setTimeout(() => {
                 setLoading(false);
-            }, 500);
+            }, 100);
         }
     }, [progress, setLoading]);
 
@@ -39,11 +38,7 @@ const Preloader = ({ setLoading }) => {
             {/* Naruto Running Animation Container */}
             <div className="relative w-full max-w-2xl h-64 flex flex-col justify-end pb-10 overflow-hidden">
 
-                {/* Progress Text Background (Big Number) */}
-                <h1 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[120px] md:text-[200px] font-black text-white/5 select-none"
-                    style={{ fontFamily: "'Ninja Naruto', sans-serif" }}>
-                    {progress}%
-                </h1>
+
 
                 {/* Running Naruto */}
                 <motion.div
@@ -54,7 +49,7 @@ const Preloader = ({ setLoading }) => {
                     }}
                 >
                     <img
-                        src={`${import.meta.env.BASE_URL}naruto-run.gif`}
+                        src={`${import.meta.env.BASE_URL}naruto_transparent.gif`}
                         alt="Naruto Running"
                         className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(255,165,0,0.5)]"
                     />
@@ -69,8 +64,9 @@ const Preloader = ({ setLoading }) => {
                 </div>
 
                 {/* Loading Text */}
-                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-akatsuki-red font-bold tracking-widest text-sm md:text-base mt-4 flex items-center gap-2">
-                    LOADING <span className="w-10 text-white">{progress}%</span>
+                <div className="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-akatsuki-red font-bold tracking-widest text-sm md:text-base mt-4 flex items-center gap-2"
+                    style={{ fontFamily: "'Ninja Naruto', sans-serif" }}>
+                    LOADING <span className="w-10 text-white" style={{ fontFamily: "sans-serif" }}>{progress}%</span>
                 </div>
             </div>
         </motion.div>
