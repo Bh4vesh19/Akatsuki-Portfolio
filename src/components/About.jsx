@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { BookOpen, Code, Terminal, Database, Layout } from 'lucide-react';
 import { AkatsukiCloud } from './Icons';
 
-import TypewriterParagraph from './TypewriterParagraph';
+
 
 const About = () => {
     const learningItems = [
@@ -32,11 +32,9 @@ const About = () => {
                                 <span className="w-1 h-6 bg-akatsuki-red rounded-full"></span>
                                 Profile Summary
                             </h3>
-                            <TypewriterParagraph
-                                text="I am a dedicated 2nd-year BCA student at Tilak Vidyapeth University with a strong passion for software development. My journey involves deep-diving into core programming languages like Python, C, and Java, while simultaneously exploring modern web technologies. I am actively seeking internship opportunities and planning to pursue an MCA to further specialize in full-stack development and software engineering."
-                                className="text-gray-300 leading-relaxed text-sm md:text-lg"
-                                speed={10}
-                            />
+                            <p className="text-gray-300 leading-relaxed text-sm md:text-lg">
+                                I am a dedicated 2nd-year BCA student at Tilak Vidyapeth University with a strong passion for software development. My journey involves deep-diving into core programming languages like Python, C, and Java, while simultaneously exploring modern web technologies. I am actively seeking internship opportunities and planning to pursue an MCA to further specialize in full-stack development and software engineering.
+                            </p>
                         </div>
                     </div>
 
@@ -44,11 +42,9 @@ const About = () => {
                     <div className="space-y-6 md:space-y-8">
                         <div className="glass-panel p-5 md:p-8 rounded-3xl border-l-4 border-l-akatsuki-red">
                             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">About Me</h2>
-                            <TypewriterParagraph
-                                text="Hello! I'm Bhavesh Suthar, a programming enthusiast based in Mumbai. I believe in the power of code to solve real-world problems. Currently, I am focused on mastering the fundamentals of computer science and applying them through hands-on projects. Whether it's building a CLI tool in Python or designing a responsive UI with React, I enjoy every step of the creation process. My goal is to build scalable, efficient, and user-friendly applications that make a difference."
-                                className="text-gray-300 mb-6 leading-relaxed text-sm md:text-base"
-                                speed={10}
-                            />
+                            <p className="text-gray-300 mb-6 leading-relaxed text-sm md:text-base">
+                                Hello! I'm Bhavesh Suthar, a programming enthusiast based in Mumbai. I believe in the power of code to solve real-world problems. Currently, I am focused on mastering the fundamentals of computer science and applying them through hands-on projects. Whether it's building a CLI tool in Python or designing a responsive UI with React, I enjoy every step of the creation process. My goal is to build scalable, efficient, and user-friendly applications that make a difference.
+                            </p>
 
                             {/* Education Card */}
                             <div className="bg-white/5 rounded-xl p-4 border border-white/10 flex items-center gap-4">
