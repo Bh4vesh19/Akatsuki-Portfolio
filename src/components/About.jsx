@@ -21,51 +21,51 @@ const About = () => {
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="grid md:grid-cols-2 gap-8 md:gap-12 items-center"
+                    className="grid md:grid-cols-2 gap-6 md:gap-12 items-center"
                 >
                     {/* Left Column: Profile & Summary */}
-                    <div className="space-y-8">
+                    <div className="space-y-6 md:space-y-8">
                         {/* Profile Summary Card */}
-                        <div className="glass-card p-6 md:p-8 rounded-2xl relative overflow-hidden group hover:border-akatsuki-red/30 transition-colors h-full flex flex-col justify-center">
+                        <div className="glass-card p-5 md:p-8 rounded-2xl relative overflow-hidden group hover:border-akatsuki-red/30 transition-colors h-full flex flex-col justify-center">
 
-                            <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-2">
+                            <h3 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
                                 <span className="w-1 h-6 bg-akatsuki-red rounded-full"></span>
                                 Profile Summary
                             </h3>
                             <TypewriterParagraph
                                 text="I am a dedicated 2nd-year BCA student at Tilak Vidyapeth University with a strong passion for software development. My journey involves deep-diving into core programming languages like Python, C, and Java, while simultaneously exploring modern web technologies. I am actively seeking internship opportunities and planning to pursue an MCA to further specialize in full-stack development and software engineering."
-                                className="text-gray-300 leading-relaxed text-base md:text-lg"
+                                className="text-gray-300 leading-relaxed text-sm md:text-lg"
                                 speed={10}
                             />
                         </div>
                     </div>
 
                     {/* Right Column: About Content & Education */}
-                    <div className="space-y-8">
-                        <div className="glass-panel p-6 md:p-8 rounded-3xl border-l-4 border-l-akatsuki-red">
-                            <h2 className="text-3xl font-bold text-white mb-4">About Me</h2>
+                    <div className="space-y-6 md:space-y-8">
+                        <div className="glass-panel p-5 md:p-8 rounded-3xl border-l-4 border-l-akatsuki-red">
+                            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">About Me</h2>
                             <TypewriterParagraph
                                 text="Hello! I'm Bhavesh Suthar, a programming enthusiast based in Mumbai. I believe in the power of code to solve real-world problems. Currently, I am focused on mastering the fundamentals of computer science and applying them through hands-on projects. Whether it's building a CLI tool in Python or designing a responsive UI with React, I enjoy every step of the creation process. My goal is to build scalable, efficient, and user-friendly applications that make a difference."
-                                className="text-gray-300 mb-6 leading-relaxed"
+                                className="text-gray-300 mb-6 leading-relaxed text-sm md:text-base"
                                 speed={10}
                             />
 
                             {/* Education Card */}
                             <div className="bg-white/5 rounded-xl p-4 border border-white/10 flex items-center gap-4">
-                                <div className="p-3 bg-akatsuki-red/20 rounded-lg text-akatsuki-red">
-                                    <BookOpen size={24} />
+                                <div className="p-3 bg-akatsuki-red/20 rounded-lg text-akatsuki-red shrink-0">
+                                    <BookOpen size={20} className="md:w-6 md:h-6" />
                                 </div>
-                                <div>
-                                    <h4 className="text-white font-semibold">BCA – Tilak Vidyapeth University</h4>
-                                    <p className="text-gray-400 text-sm">2nd Year Student</p>
+                                <div className="overflow-hidden">
+                                    <h4 className="text-white font-semibold truncate text-sm md:text-base">BCA – Tilak Vidyapeth University</h4>
+                                    <p className="text-gray-400 text-xs md:text-sm">2nd Year Student</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* Current Learning */}
                         <div>
-                            <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                                <span className="w-2 h-8 bg-akatsuki-red rounded-full"></span>
+                            <h3 className="text-lg md:text-xl font-bold text-white mb-4 flex items-center gap-2">
+                                <span className="w-2 h-6 md:h-8 bg-akatsuki-red rounded-full"></span>
                                 Current Learning
                             </h3>
                             <div className="grid gap-3">

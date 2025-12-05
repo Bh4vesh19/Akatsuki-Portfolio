@@ -61,18 +61,18 @@ const Contact = () => {
                         viewport={{ once: true }}
                     >
                         <div className="relative">
-                            <h2 className="text-4xl font-bold text-white mb-6 relative z-10">Let's <span className="text-akatsuki-red neon-text">Connect</span></h2>
+                            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 relative z-10">Let's <span className="text-akatsuki-red neon-text">Connect</span></h2>
                             <div className="absolute -top-12 -right-12 opacity-30 animate-pulse-slow">
                                 <AkatsukiCloud className="w-48 h-28 text-akatsuki-red drop-shadow-[0_0_10px_rgba(230,0,0,0.5)]" />
                             </div>
                         </div>
-                        <p className="text-gray-400 mb-10 text-lg relative z-10">
+                        <p className="text-gray-400 mb-8 md:mb-10 text-base md:text-lg relative z-10 leading-relaxed">
                             I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
                         </p>
 
-                        <div className="space-y-6">
+                        <div className="space-y-4 md:space-y-6">
                             {[
-                                { icon: Mail, text: "bhaveshsutharb830@gmail.com", href: "mailto:bhaveshsutharb830@gmail.com" },
+                                { icon: Mail, text: "bhaveshsutharb830@gmail.com", href: "mailto:bhaveshsutharb830@gmail.com", break: true },
                                 { icon: Phone, text: "+91 7715915731", href: "tel:+917715915731" },
                                 {
                                     icon: MapPin,
@@ -86,12 +86,12 @@ const Contact = () => {
                                     href={item.href}
                                     target={item.target}
                                     rel={item.target === "_blank" ? "noopener noreferrer" : undefined}
-                                    className="flex items-center gap-4 p-4 rounded-xl glass hover:bg-white/5 transition-colors group"
+                                    className="flex items-center gap-3 md:gap-4 p-3 md:p-4 rounded-xl glass hover:bg-white/5 transition-colors group"
                                 >
-                                    <div className="p-3 rounded-full bg-akatsuki-red/10 text-akatsuki-red group-hover:bg-akatsuki-red group-hover:text-white transition-all">
-                                        <item.icon size={24} />
+                                    <div className="p-2 md:p-3 rounded-full bg-akatsuki-red/10 text-akatsuki-red group-hover:bg-akatsuki-red group-hover:text-white transition-all shrink-0">
+                                        <item.icon size={20} className="md:w-6 md:h-6" />
                                     </div>
-                                    <span className="text-gray-300 group-hover:text-white transition-colors">{item.text}</span>
+                                    <span className={`text-gray-300 group-hover:text-white transition-colors text-sm md:text-base ${item.break ? 'break-all' : ''}`}>{item.text}</span>
                                 </a>
                             ))}
                         </div>
@@ -102,7 +102,7 @@ const Contact = () => {
                         initial={{ opacity: 0, x: 30 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
-                        className="glass-panel p-6 md:p-8 rounded-3xl"
+                        className="glass-panel p-5 md:p-8 rounded-3xl"
                     >
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div>
