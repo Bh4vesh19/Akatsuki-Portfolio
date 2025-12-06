@@ -37,7 +37,7 @@ const TechMarquee = () => {
                 transition={{
                     repeat: Infinity,
                     ease: "linear",
-                    duration: 20 // Speed of scroll
+                    duration: 30 // Slower speed for better readablity on mobile
                 }}
             >
                 {marqueeItems.map((tech, index) => (

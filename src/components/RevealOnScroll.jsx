@@ -4,7 +4,7 @@ import { motion, useInView, useAnimation } from 'framer-motion';
 
 const RevealOnScroll = ({ children, width = "100%" }) => {
     const ref = useRef(null);
-    const isInView = useInView(ref, { once: true, margin: "-75px" });
+    const isInView = useInView(ref, { once: true, margin: "-50px" });
     const mainControls = useAnimation();
 
     useEffect(() => {

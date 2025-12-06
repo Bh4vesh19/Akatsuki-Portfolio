@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { BookOpen, Code, Terminal, Database, Layout } from 'lucide-react';
+import { BookOpen, Code, Terminal, Database, Layout, FileText } from 'lucide-react';
 import { AkatsukiCloud } from './Icons';
 
 
@@ -15,34 +15,45 @@ const About = () => {
     ];
 
     return (
-        <section id="about" className="py-12 md:py-20 px-4 relative overflow-hidden">
+        <section id="about" className="py-12 md:py-20 lg:py-24 px-4 relative overflow-hidden">
             <div className="max-w-6xl mx-auto">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    className="grid md:grid-cols-2 gap-6 md:gap-12 items-center"
+                    className="grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 items-start lg:items-center"
                 >
                     {/* Left Column: Profile & Summary */}
-                    <div className="space-y-6 md:space-y-8">
+                    <div className="space-y-6 md:space-y-8 h-full">
                         {/* Profile Summary Card */}
-                        <div className="glass-card p-5 md:p-8 rounded-2xl relative overflow-hidden group hover:border-akatsuki-red/30 transition-colors h-full flex flex-col justify-center">
+                        <div className="glass-card p-5 md:p-6 lg:p-8 rounded-2xl relative overflow-hidden group hover:border-akatsuki-red/30 transition-colors h-full flex flex-col justify-center">
 
                             <h3 className="text-xl md:text-2xl font-bold text-white mb-4 flex items-center gap-2">
                                 <span className="w-1 h-6 bg-akatsuki-red rounded-full"></span>
                                 Profile Summary
                             </h3>
-                            <p className="text-gray-300 leading-relaxed text-sm md:text-lg">
+                            <p className="text-gray-300 leading-relaxed text-sm lg:text-lg">
                                 I am a dedicated 2nd-year BCA student at Tilak Vidyapeth University with a strong passion for software development. My journey involves deep-diving into core programming languages like Python, C, and Java, while simultaneously exploring modern web technologies. I am actively seeking internship opportunities and planning to pursue an MCA to further specialize in full-stack development and software engineering.
                             </p>
+                            <div className="mt-6">
+                                <a
+                                    href={`${import.meta.env.BASE_URL}resume%20bhavesh.pdf`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="inline-flex items-center gap-2 px-6 py-2 rounded-full border border-akatsuki-red/50 text-akatsuki-red hover:bg-akatsuki-red hover:text-white transition-all duration-300 text-sm font-semibold hover:shadow-[0_0_20px_rgba(230,0,0,0.4)]"
+                                >
+                                    <FileText size={18} />
+                                    Download CV
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     {/* Right Column: About Content & Education */}
                     <div className="space-y-6 md:space-y-8">
-                        <div className="glass-panel p-5 md:p-8 rounded-3xl border-l-4 border-l-akatsuki-red">
+                        <div className="glass-panel p-5 md:p-6 lg:p-8 rounded-3xl border-l-4 border-l-akatsuki-red">
                             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">About Me</h2>
-                            <p className="text-gray-300 mb-6 leading-relaxed text-sm md:text-base">
+                            <p className="text-gray-300 mb-6 leading-relaxed text-sm lg:text-base">
                                 Hello! I'm Bhavesh Suthar, a programming enthusiast based in Mumbai. I believe in the power of code to solve real-world problems. Currently, I am focused on mastering the fundamentals of computer science and applying them through hands-on projects. Whether it's building a CLI tool in Python or designing a responsive UI with React, I enjoy every step of the creation process. My goal is to build scalable, efficient, and user-friendly applications that make a difference.
                             </p>
 
